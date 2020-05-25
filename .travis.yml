@@ -1,0 +1,25 @@
+language: cpp
+dist: bionic
+arch:
+  - arm64
+  - amd64
+  - ppc64le
+  - s390x
+addons:
+  apt:
+    update: true
+    sources:
+      - sourceline: "ppa:ubuntu-toolchain-r/test"
+    packages:
+      - gcc-10 g++-10
+env:
+  global:
+    - CC=gcc-10 CXX=g++-10
+
+install:
+  - cmake .
+  
+script:
+  - make
+  - make install
+  - make test
